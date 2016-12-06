@@ -37,7 +37,10 @@ public class SoaMigrationHelper extends BasicMigrationHelper {
 		if ("ServiceDTO".equals(name)) {
 			return EnvironmentPackage.Literals.DTO;
 		}
-		if ("Cateogry".equals(name)) {
+		if ("Category".equals(name)) {
+			return EnvironmentPackage.Literals.NAMESPACE;
+		}
+		if ("DTORegistry".equals(name)) {
 			return EnvironmentPackage.Literals.NAMESPACE;
 		}
 		return null;
@@ -59,6 +62,9 @@ public class SoaMigrationHelper extends BasicMigrationHelper {
 		}
 		if (type == EnvironmentPackage.Literals.DATA_TYPE) {
 			return parentHelper.originalCreateObject(EnvironmentFactory.eINSTANCE, EnvironmentPackage.Literals.PRIMITIVE_TYPE);
+		}
+		if ("DTORegistry".equals(type.getName())) {
+			return parentHelper.originalCreateObject(EnvironmentFactory.eINSTANCE, EnvironmentPackage.Literals.NAMESPACE);
 		}
 		return null;
 	}
